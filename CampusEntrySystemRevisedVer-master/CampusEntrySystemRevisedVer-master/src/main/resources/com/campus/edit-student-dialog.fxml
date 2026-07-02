@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:id="dialogRoot"
+           fx:controller="com.campus.EditStudentDialogController"
+           stylesheets="@dashboard.css"
+           style="
+               -fx-background-color: rgba(0,0,0,0.45);
+           "
+           maxWidth="Infinity"
+           maxHeight="Infinity">
+
+    <!-- ================= DIALOG CARD ================= -->
+    <VBox maxWidth="560"
+          maxHeight="-Infinity"
+          spacing="0"
+          StackPane.alignment="CENTER"
+          style="
+              -fx-background-color: white;
+              -fx-background-radius: 20;
+              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 40, 0.3, 0, 8);
+          ">
+
+        <!-- ── HEADER ── -->
+        <VBox spacing="4"
+              style="
+                  -fx-background-color: linear-gradient(to right, #8B0000, #a00000);
+                  -fx-background-radius: 20 20 0 0;
+                  -fx-padding: 20 24 20 24;
+              ">
+
+            <HBox alignment="CENTER_LEFT"
+                  spacing="10">
+
+                <StackPane prefWidth="38"
+                           prefHeight="38"
+                           style="
+                               -fx-background-color: rgba(255,255,255,0.15);
+                               -fx-background-radius: 10;
+                           ">
+
+                    <Label text="✏"
+                           style="
+                               -fx-font-size: 16px;
+                               -fx-text-fill: white;
+                           "/>
+
+                </StackPane>
+
+                <VBox spacing="2">
+
+                    <Label text="Edit Student Details"
+                           style="
+                               -fx-font-size: 20px;
+                               -fx-font-weight: bold;
+                               -fx-text-fill: white;
+                           "/>
+
+                    <Label fx:id="dialogSubtitle"
+                           text="Editing record…"
+                           style="
+                               -fx-font-size: 12px;
+                               -fx-text-fill: #ffe5e5;
+                           "/>
+
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- CLOSE (×) button -->
+                <StackPane prefWidth="32"
+                           prefHeight="32"
+                           onMouseClicked="#handleCancel"
+                           style="
+                               -fx-background-color: rgba(255,255,255,0.15);
+                               -fx-background-radius: 8;
+                               -fx-cursor: hand;
+                           ">
+
+                    <Label text="✕"
+                           style="
+                               -fx-font-size: 14px;
+                               -fx-font-weight: bold;
+                               -fx-text-fill: white;
+                           "/>
+
+                </StackPane>
+
+            </HBox>
+
+        </VBox>
+
+        <!-- ── FORM BODY ── -->
+        <VBox spacing="18"
+              style="-fx-padding: 24 28 20 28;">
+
+            <!-- STUDENT ID (read-only) -->
+            <VBox spacing="6">
+
+                <Label text="Student ID"
+                       style="
+                           -fx-font-size: 12px;
+                           -fx-font-weight: bold;
+                           -fx-text-fill: #64748b;
+                       "/>
+
+                <TextField fx:id="fieldStudentId"
+                           promptText="Student ID"
+                           editable="false"
+                           style="
+                               -fx-background-color: #f1f5f9;
+                               -fx-background-radius: 10;
+                               -fx-border-color: #e2e8f0;
+                               -fx-border-radius: 10;
+                               -fx-border-width: 1;
+                               -fx-padding: 10 14 10 14;
+                               -fx-font-size: 13px;
+                               -fx-text-fill: #94a3b8;
+                           "/>
+
+            </VBox>
+
+            <!-- FULL NAME -->
+            <VBox spacing="6">
+
+                <Label text="Full Name"
+                       style="
+                           -fx-font-size: 12px;
+                           -fx-font-weight: bold;
+                           -fx-text-fill: #334155;
+                       "/>
+
+                <TextField fx:id="fieldFullName"
+                           promptText="e.g. Juan Dela Cruz"
+                           style="
+                               -fx-background-color: white;
+                               -fx-background-radius: 10;
+                               -fx-border-color: #d1d5db;
+                               -fx-border-radius: 10;
+                               -fx-border-width: 1.5;
+                               -fx-padding: 10 14 10 14;
+                               -fx-font-size: 13px;
+                           "/>
+
+            </VBox>
+
+            <!-- SEX -->
+            <VBox spacing="6">
+
+                <Label text="Sex"
+                       style="
+                           -fx-font-size: 12px;
+                           -fx-font-weight: bold;
+                           -fx-text-fill: #334155;
+                       "/>
+
+                <ComboBox fx:id="comboSex"
+                          maxWidth="Infinity"
+                          promptText="Select M or F"
+                          style="
+                              -fx-background-color: white;
+                              -fx-background-radius: 10;
+                              -fx-border-color: #d1d5db;
+                              -fx-border-radius: 10;
+                              -fx-border-width: 1.5;
+                              -fx-font-size: 13px;
+                          "/>
+
+            </VBox>
+
+            <!-- BLOCKED STATUS / MANUAL APPROVAL -->
+            <VBox spacing="10"
+                  style="
+                      -fx-background-color: #fef3c7;
+                      -fx-background-radius: 12;
+                      -fx-padding: 14;
+                  ">
+
+                <Label fx:id="blockedStatusLabel"
+                       text=""
+                       wrapText="true"
+                       style="
+                           -fx-text-fill: #92400e;
+                           -fx-font-size: 12px;
+                           -fx-font-weight: bold;
+                       "
+                       visible="false"
+                       managed="false"/>
+
+                <Button fx:id="approveManualBtn"
+                        text="✅ Approve Manual Time-In for Today"
+                        onAction="#handleApproveManual"
+                        prefHeight="40"
+                        maxWidth="Infinity"
+                        style="
+                            -fx-background-color: #16a34a;
+                            -fx-text-fill: white;
+                            -fx-font-weight: bold;
+                            -fx-background-radius: 8;
+                            -fx-cursor: hand;
+                        "
+                        visible="false"
+                        managed="false"/>
+
+            </VBox>
+
+            <!-- ERROR LABEL -->
+            <Label fx:id="errorLabel"
+                   text=""
+                   wrapText="true"
+                   style="
+                       -fx-text-fill: #dc2626;
+                       -fx-font-size: 12px;
+                   "
+                   visible="false"
+                   managed="false"/>
+
+        </VBox>
+
+        <!-- ── FOOTER BUTTONS ── -->
+        <HBox spacing="12"
+              alignment="CENTER_RIGHT"
+              style="
+                  -fx-padding: 0 28 24 28;
+              ">
+
+            <Button text="Cancel"
+                    onAction="#handleCancel"
+                    prefHeight="42"
+                    styleClass="secondaryButton"/>
+
+            <Button text="💾  Save Changes"
+                    onAction="#handleSave"
+                    prefHeight="42"
+                    styleClass="primaryButton"/>
+
+        </HBox>
+
+    </VBox>
+
+</StackPane>
